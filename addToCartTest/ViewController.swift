@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         
          newSqlManager.createDatabase()
         cartA = newSqlManager.getCartData()
+        badG(cartArr: cartA)
 //        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
 //        print(documentsPath)
         runningDataArray =  helloDataArray.dataArray()
@@ -37,11 +38,11 @@ class ViewController: UIViewController {
         
         CV.delegate = self
         CV.dataSource = self
-        badG()
+       // badG()
         
     }
     
-    func badG(){
+    func badG(cartArr: [DataModel]){
         let label = UILabel(frame: CGRect(x: 25, y: -10, width: 30, height: 30))
         label.layer.borderColor = UIColor.clear.cgColor
         label.layer.borderWidth = 2
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         label.font = UIFont(name: "SanFranciscoText-Light", size: 13)
         label.textColor = .white
         label.backgroundColor = .red
-        label.text = "\(cartA.count)"
+        label.text = "\(cartArr.count)"
         
         
         let lbl = UIView()
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
         let rightButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         rightButton.setBackgroundImage(UIImage(named: "inbox"), for: .normal)
         rightButton.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
-        if cartA.count != 0 {
+        if cartArr.count != 0 {
             rightButton.addSubview(label)
         } else{
             rightButton.addSubview(lbl)
@@ -119,7 +120,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let title = productDetail.title else { return }
         newSqlManager.putCartData(name: name, title: title)
         cartA =  newSqlManager.getCartData()
-        badG()
+        badG(cartArr: cartA)
         
         
         

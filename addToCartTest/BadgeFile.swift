@@ -10,7 +10,4 @@ import UIKit
 
 class BadgeFile {
     
-    
-    
-    
 }
